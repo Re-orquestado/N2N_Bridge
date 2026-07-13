@@ -2,8 +2,6 @@
 
 N2N Bridge is a Python middleware that translates game telemetry into structured musical intent, leveraging Large Language Models (LLMs) to generate deterministic MusicXML scores in real-time. It moves beyond traditional audio-looping systems, giving composers editable, high-quality musical scaffolding based on immediate game context.
 
-Built for the **Kanz AI Hackathon**.
-
 ## Features
 
 * **Game State Ingestion:** Reads live game data via JSON.
