@@ -1,78 +1,78 @@
 ```markdown
 # N2N Bridge Middleware
 
-**N2N Bridge** es un middleware inteligente que convierte telemetría de videojuegos en partituras **MusicXML 3.1** utilizando IA (Groq). El sistema actúa como un puente entre el estado del juego y la notación musical, generando **andamiajes estructurales** (scaffolding) que sirven como punto de partida para compositores humanos.
+**N2N Bridge** is an intelligent middleware that converts video game telemetry into **MusicXML 3.1** scores using AI (Groq). The system acts as a bridge between game state and musical notation, generating **structural scaffolds** that serve as a starting point for human composers.
 
 ---
 
-## 🎯 Características
+## 🎯 Features
 
-- **Traducción semántica**: Convierte variables de juego (tensión, entorno, combate) en parámetros musicales (armonía, ritmo, dinámica, instrumentación).
-- **MusicXML 3.1**: Genera código válido y bien formado, compatible con MuseScore 4 y otros software de notación.
-- **API REST**: Expone endpoints para recibir telemetría y devolver partituras.
-- **Andamiaje estructural**: Crea maquetas funcionales con 4 voces reales, progresiones armónicas lógicas y respeto por los rangos instrumentales.
-- **Determinista y educativo**: Diseñado para que el compositor humano complete y refine la obra.
+- **Semantic translation**: Converts game variables (tension, environment, combat) into musical parameters (harmony, rhythm, dynamics, instrumentation).
+- **MusicXML 3.1**: Generates valid, well-formed code compatible with MuseScore 4 and other notation software.
+- **REST API**: Exposes endpoints to receive telemetry and return scores.
+- **Structural scaffolding**: Creates functional mockups with 4 real voices, logical harmonic progressions, and respect for instrumental ranges.
+- **Deterministic and educational**: Designed for the human composer to complete and refine the work.
 
 ---
 
-## 🚀 Tecnologías
+## 🚀 Technologies
 
 - **Python 3.10+**
-- **FastAPI** - Framework web para la API REST
-- **Groq SDK** - Conexión con el modelo Llama 3.3 70B
-- **Pydantic** - Validación de datos de telemetría
-- **Uvicorn** - Servidor ASGI
+- **FastAPI** – Web framework for the REST API
+- **Groq SDK** – Connection with the Llama 3.3 70B model
+- **Pydantic** – Telemetry data validation
+- **Uvicorn** – ASGI server
 
 ---
 
-## 📦 Instalación
+## 📦 Installation
 
-### 1. Clonar el repositorio
+### 1. Clone the repository
 ```bash
-git clone https://github.com/tu-usuario/N2N_Bridge_Final.git
+git clone https://github.com/your-username/N2N_Bridge_Final.git
 cd N2N_Bridge_Final
 ```
 
-2. Crear entorno virtual (opcional pero recomendado)
+2. Create a virtual environment (optional but recommended)
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Instalar dependencias
+3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configurar variables de entorno
+4. Set up environment variables
 
-Crea un archivo .env en la raíz del proyecto:
+Create a .env file in the project root:
 
 ```env
-GROQ_API_KEY=tu_clave_aqui
+GROQ_API_KEY=your_api_key_here
 ```
 
 ---
 
-🖥️ Uso
+🖥️ Usage
 
-Ejecutar el servidor
+Run the server
 
 ```bash
 python main.py
 ```
 
-El servidor estará disponible en http://localhost:8000.
+The server will be available at http://localhost:8000.
 
-Endpoints disponibles
+Available endpoints
 
 POST /generate
 
-Recibe telemetría y genera un archivo MusicXML.
+Receives telemetry and generates a MusicXML file.
 
-Ejemplo de petición:
+Example request:
 
 ```json
 {
@@ -87,7 +87,7 @@ Ejemplo de petición:
 }
 ```
 
-Respuesta:
+Response:
 
 ```json
 {
@@ -99,38 +99,38 @@ Respuesta:
 
 GET /health
 
-Verifica que el servicio esté activo.
+Verifies that the service is running.
 
 ---
 
-📁 Estructura del Proyecto
+📁 Project Structure
 
 ```
 N2N_Bridge_Final/
-├── main.py              # Servidor FastAPI
-├── bridge.py            # Lógica principal (conexión con Groq)
-├── models.py            # Modelos Pydantic para telemetría
-├── config.py            # Configuración y variables de entorno
-├── requirements.txt     # Dependencias
-├── telemetry_example.json # Ejemplo de telemetría para pruebas
-└── README.md            # Este archivo
+├── main.py              # FastAPI server
+├── bridge.py            # Core logic (Groq connection)
+├── models.py            # Pydantic models for telemetry
+├── config.py            # Configuration and environment variables
+├── requirements.txt     # Dependencies
+├── telemetry_example.json # Example telemetry for testing
+└── README.md            # This file
 ```
 
 ---
 
-🎼 ¿Cómo funciona internamente?
+🎼 How it works internally
 
-1. El usuario envía telemetría al endpoint /generate.
-2. El sistema construye un prompt con instrucciones específicas para el LLM (rol, restricciones, reglas teóricas, mapeo de parámetros).
-3. Groq procesa el prompt y genera código MusicXML 3.1 limpio, sin texto adicional.
-4. El archivo se guarda con un timestamp único en el servidor.
-5. La partitura puede abrirse en MuseScore para revisión y edición.
+1. The user sends telemetry to the /generate endpoint.
+2. The system builds a prompt with specific instructions for the LLM (role, constraints, theoretical rules, parameter mapping).
+3. Groq processes the prompt and generates clean MusicXML 3.1 code, with no extra text.
+4. The file is saved with a unique timestamp on the server.
+5. The score can be opened in MuseScore for review and editing.
 
 ---
 
-🧪 Pruebas rápidas
+🧪 Quick tests
 
-Con curl
+With curl
 
 ```bash
 curl -X POST http://localhost:8000/generate \
@@ -138,7 +138,7 @@ curl -X POST http://localhost:8000/generate \
   -d @telemetry_example.json
 ```
 
-Con Python (requests)
+With Python (requests)
 
 ```python
 import requests
@@ -161,61 +161,61 @@ print(response.json())
 
 ---
 
-🔧 Personalización
+🔧 Customization
 
-Modificar el prompt del sistema
+Modify the system prompt
 
-Edita bridge.py en el método build_system_prompt(). Puedes ajustar:
+Edit bridge.py in the build_system_prompt() method. You can adjust:
 
-· Reglas de armonía y contrapunto.
-· Rangos instrumentales.
-· Mapeo de emociones a progresiones armónicas.
-· Parámetros de densidad rítmica.
+· Harmony and counterpoint rules.
+· Instrumental ranges.
+· Emotion-to-harmonic-progression mapping.
+· Rhythmic density parameters.
 
-Cambiar el modelo de Groq
+Change the Groq model
 
-En bridge.py, modifica:
-
-```python
-self.model = "llama-3.3-70b-versatile"  # Cambia por otro modelo disponible
-```
-
-Ajustar parámetros de generación
-
-En generate_musicxml(), modifica:
+In bridge.py, modify:
 
 ```python
-temperature=0.7,      # Creatividad (0-1)
-max_tokens=4096,      # Límite de longitud
-top_p=0.95            # Muestreo de núcleo
+self.model = "llama-3.3-70b-versatile"  # Change to another available model
+```
+
+Adjust generation parameters
+
+In generate_musicxml(), modify:
+
+```python
+temperature=0.7,      # Creativity (0-1)
+max_tokens=4096,      # Length limit
+top_p=0.95            # Nucleus sampling
 ```
 
 ---
 
-📚 Dependencias principales
+📚 Main dependencies
 
-Paquete Versión Uso
-fastapi 0.115.6 Framework web
-uvicorn 0.34.0 Servidor ASGI
-groq 0.10.0 SDK para Groq API
-python-dotenv 1.0.1 Carga de variables de entorno
-pydantic 2.9.2 Validación de datos
-
----
-
-🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para sugerir mejoras.
+Package Version Purpose
+fastapi 0.115.6 Web framework
+uvicorn 0.34.0 ASGI server
+groq 0.10.0 Groq API SDK
+python-dotenv 1.0.1 Environment variable loading
+pydantic 2.9.2 Data validation
 
 ---
 
-📄 Licencia
+🤝 Contributing
 
-MIT License - ver archivo LICENSE para más detalles.
+Contributions are welcome. Please open an issue or pull request to suggest improvements.
 
 ---
 
-👤 Autor
+📄 License
+
+MIT License – see the LICENSE file for details.
+
+---
+
+👤 Author
 
 Sergio Andrés Gutiérrez León
 
@@ -223,14 +223,14 @@ Sergio Andrés Gutiérrez León
 
 ---
 
-🙏 Agradecimientos
+🙏 Acknowledgements
 
-· Groq por proporcionar el modelo Llama 3.3 70B.
-· MuseScore por su excelente software de notación musical.
-· Comunidad de código abierto por las herramientas que hacen posible este proyecto.
+· Groq for providing the Llama 3.3 70B model.
+· MuseScore for their excellent music notation software.
+· The open-source community for the tools that make this project possible.
 
 ---
 
-Nota: Este sistema está diseñado para generar andamiajes estructurales, no obras finalizadas. La intención es acelerar el flujo de trabajo del compositor, no reemplazar su criterio artístico.
+Note: This system is designed to generate structural scaffolds, not finished works. The intention is to accelerate the composer's workflow, not to replace their artistic judgment.
 
 ```
