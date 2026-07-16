@@ -219,7 +219,7 @@ MIT License – see the LICENSE file for details.
 
 Sergio Andrés Gutiérrez León
 
-· GitHub: @sergioandresgutierrezleon-lab
+· GitHub: @Re-orquestado-lab
 
 ---
 
